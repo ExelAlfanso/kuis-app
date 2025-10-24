@@ -4,3 +4,10 @@
 .font-roboto {
   font-family: "Roboto", sans-serif;
 }
+
+@theme {
+  --color-primary: #31493c;
+  --color-heading: #001a23;
+  --color-accent: #7a9e7e;
+  --color-secondary: #b3efb2;
+}
