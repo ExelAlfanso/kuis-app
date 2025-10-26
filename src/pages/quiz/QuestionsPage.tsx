@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
 import QuestionCard from "../../components/quiz/QuestionCard";
 import { useLoading } from "../../hooks/useLoading";
@@ -7,11 +7,12 @@ import { hashString } from "../../utils/hashString";
 import { sessionKey } from "../../utils/sessionKey";
 import Timer from "../../components/Timer";
 import FinishCard from "../../components/quiz/FinishCard";
-import { QUIZPROGRESS_KEY } from "../../hooks/useQuizProgress";
+import { QUIZPROGRESS_KEY, useQuizProgress } from "../../hooks/useQuizProgress";
 
 export default function QuestionsPage() {
   const location = useLocation();
   const navigate = useNavigate();
+  const { deleteQuizProgress } = useQuizProgress();
   const { quizProgress, questions, username } = location.state || {};
 
   const [index, setIndex] = useState(quizProgress?.index || 0);
@@ -24,25 +25,14 @@ export default function QuestionsPage() {
 
   const currentQuestion = questions[index];
 
-  // bakal ngesave state quiz saat dan setelah pertanyaan selanjutnya.
-  useEffect(() => {
-    localStorage.setItem(
-      QUIZPROGRESS_KEY,
-      JSON.stringify({
-        initialTimeLeft,
-        username,
-        index,
-        questions,
-      })
-    );
-  }, [index, questions]);
-
   // ngehandle saving timeLeft per tick
   const handleTick = (time: number) => {
     localStorage.setItem(
       QUIZPROGRESS_KEY,
       JSON.stringify({
-        ...JSON.parse(localStorage.getItem(QUIZPROGRESS_KEY) || "{}"),
+        username,
+        index,
+        questions,
         timeLeft: time,
       })
     );
@@ -51,8 +41,17 @@ export default function QuestionsPage() {
   // ngehandle finish event
   const handleFinish = () => {
     setFinished(true);
+    deleteQuizProgress();
   };
-
+  const handleRestart = () => {
+    // deleteQuizProgress();
+    setIndex(0);
+    setCorrectAnswers(0);
+    setFinished(false);
+    navigate("/quiz/questions", {
+      state: { quizProgress, questions, username },
+    });
+  };
   // ngehandle nextQuestion event
   const handleNextQuestion = async (selected: string) => {
     const isCorrect = await checkAnswer(
@@ -65,7 +64,7 @@ export default function QuestionsPage() {
       }
       setIndex((prevIndex: number) => prevIndex + 1);
     } else {
-      setFinished(true);
+      handleFinish();
     }
   };
 
@@ -75,7 +74,7 @@ export default function QuestionsPage() {
         <FinishCard
           totalQuestions={questions.length}
           correctAnswers={correctAnswers}
-          onRestart={() => navigate("/quiz/questions")}
+          onRestart={handleRestart}
         ></FinishCard>
       </div>
     );

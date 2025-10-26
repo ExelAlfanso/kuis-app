@@ -11,11 +11,11 @@ const InputField: React.FC<InputFieldProps> = ({
   onChange,
 }) => {
   return (
-    <div className="input-field text-black flex flex-col w-full">
-      {label && <label>{label}</label>}
+    <div className="flex flex-col w-full text-black input-field">
+      {label && <label className="font-semibold font-nunito">{label}</label>}
       <input
         type={type}
-        className="bg-gray-50 focus:outline-none focus:bg-white focus:ring-2 focus:ring-black text-black p-2 rounded w-full"
+        className="w-full p-2 py-4 font-semibold text-black border-2 border-black font-nunito rounded-xs focus:outline-none focus:bg-gray-100 "
         placeholder={placeholder || ""}
         onChange={onChange}
       />

@@ -5,12 +5,14 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import LoginPage from "./pages/auth/LoginPage.tsx";
 import QuizPage from "./pages/quiz/QuizPage.tsx";
 import QuestionsPage from "./pages/quiz/QuestionsPage.tsx";
+import LandingPage from "./pages/LandingPage.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LoginPage />}></Route>
+        <Route path="/" element={<LandingPage />}></Route>
+        <Route path="/login" element={<LoginPage />}></Route>
         <Route path="/quiz" element={<QuizPage />}></Route>
         <Route path="/quiz/questions" element={<QuestionsPage />}></Route>
       </Routes>

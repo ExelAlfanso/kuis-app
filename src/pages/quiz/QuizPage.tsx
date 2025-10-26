@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Button from "../../components/Button";
+import Button from "../../components/buttons/Button";
 import CategoryInputDropdown from "../../components/CategoryInputDropdown";
 import InputDropdown from "../../components/InputDropdown";
 import QuestionsInputDropdown from "../../components/quiz/QuestionsInputDropdown";
@@ -58,7 +58,7 @@ export default function QuizPage() {
               <p className="text-primary mb-5">
                 Select a category and difficulty level to start the quiz.
               </p>
-              <div className="w-1/3 flex flex-col items-center justify-center gap-5">
+              <div className="w-full flex flex-col items-center justify-center gap-5">
                 <QuestionsInputDropdown
                   label={"Number of Questions"}
                   initialValue={quizStarted.amount.toString() + " questions"}

@@ -1,33 +1,31 @@
 import { useState } from "react";
-import InputField from "../../components/InputField";
 import { useNavigate } from "react-router";
-import Button from "../../components/Button";
+import { useAuth } from "../../hooks/useAuth";
+import TopBar from "../../components/TopBar";
+import Brutality from "../../sections/Brutality";
+import LoginForm from "../../forms/LoginForm";
 
 export default function LoginPage() {
-  const [username, setUsername] = useState("");
+  const { username, login } = useAuth();
+  const [inputUsername, setUsername] = useState("");
+
   const navigate = useNavigate();
 
-  const handleLogin = (e: React.FormEvent) => {
-    e.preventDefault();
-    localStorage.setItem("username", username);
+  const handleSubmit = () => {
+    if (!username) {
+      login(inputUsername);
+    }
     navigate("/quiz");
   };
-
   return (
-    <div className="min-h-screen bg-white flex items-center justify-center">
-      <div className="flex flex-col items-center justify-center gap-5 p-5 shadow-lg rounded">
-        <h1 className="text-primary text-3xl font-semibold">
-          Welcome to TrivQuiz!
-        </h1>
-        <InputField
-          type="text"
-          placeholder="Enter your username"
-          onChange={(e) => setUsername(e.target.value)}
-        />
-        <Button type="submit" onClick={handleLogin}>
-          Start Quiz
-        </Button>
-      </div>
+    <div className="flex flex-col items-start justify-center min-h-screen bg-primary ">
+      <TopBar></TopBar>
+      <LoginForm
+        onSubmit={handleSubmit}
+        onChangeUsername={setUsername}
+        username={inputUsername}
+      />
+      <Brutality />
     </div>
   );
 }

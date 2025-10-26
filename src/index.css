@@ -1,13 +1,26 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Modak&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
 @import "tailwindcss";
 
-.font-roboto {
-  font-family: "Roboto", sans-serif;
+.font-modak {
+  font-family: "Modak", cursive;
+}
+.font-nunito {
+  font-family: "Nunito Sans", sans-serif;
 }
 
 @theme {
-  --color-primary: #31493c;
+  --color-primary: #8c46fd;
   --color-heading: #001a23;
-  --color-accent: #7a9e7e;
-  --color-secondary: #b3efb2;
+  --color-accent-one: #9bff00;
+  --color-accent-two: #ff8a8a;
+  --color-secondary: #fae938;
+}
+
+@utility text-stroke-1 {
+  text-shadow: 1px 1px 0 #000, -1px -1px 0 #000, 1px -1px 0 #000,
+    -1px 1px 0 #000;
+}
+@utility text-stroke-2 {
+  text-shadow: 2px 2px 0 #000, -2px -2px 0 #000, 2px -2px 0 #000,
+    -2px 2px 0 #000;
 }
