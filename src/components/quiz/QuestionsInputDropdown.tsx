@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useOutsideClick } from "../hooks/useOutsideClick";
+import { useOutsideClick } from "../../hooks/useOutsideClick";
 import { CaretDownIcon } from "@phosphor-icons/react";
-import type { InputDropdownProps } from "./InputDropdown";
+import type { InputDropdownProps } from "../InputDropdown";
 
 const QuestionsInputDropdown: React.FC<InputDropdownProps> = ({
   label,

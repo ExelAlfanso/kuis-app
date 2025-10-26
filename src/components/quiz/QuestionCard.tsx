@@ -1,4 +1,4 @@
-import type { TriviaQuestion } from "../../services/opentdb";
+import type { TriviaQuestion } from "../../models/TriviaQuestion";
 import BooleanQuestion from "./BooleanQuestion";
 import MultipleChoice from "./MultipleChoice";
 

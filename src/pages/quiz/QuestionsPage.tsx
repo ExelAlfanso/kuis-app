@@ -1,21 +1,27 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "motion/react";
-import QuestionCard from "./QuestionCard";
+import QuestionCard from "../../components/quiz/QuestionCard";
 import { useLoading } from "../../hooks/useLoading";
 import { hashString } from "../../utils/hashString";
 import { sessionKey } from "../../utils/sessionKey";
 import Timer from "../../components/Timer";
-export const QUIZPROGRESS_KEY = "quizProgress";
+import FinishCard from "../../components/quiz/FinishCard";
+import { QUIZPROGRESS_KEY } from "../../hooks/useQuizProgress";
 
 export default function QuestionsPage() {
   const location = useLocation();
-  const { questions, username } = location.state || {};
-  const [index, setIndex] = useState(0);
-  const [correctAnswers, setCorrectAnswers] = useState(0);
-  const [incorrectAnswers, setIncorrectAnswers] = useState(0);
-  const [finished, setFinished] = useState(false);
+  const navigate = useNavigate();
+  const { quizProgress, questions, username } = location.state || {};
+
+  const [index, setIndex] = useState(quizProgress?.index || 0);
+  const [correctAnswers, setCorrectAnswers] = useState(
+    quizProgress?.correctAnswers || 0
+  );
+  const [finished, setFinished] = useState(quizProgress?.finished || false);
+  const [initialTimeLeft] = useState(quizProgress?.timeLeft || 300);
   const { loading, Spinner } = useLoading();
+
   const currentQuestion = questions[index];
 
   // bakal ngesave state quiz saat dan setelah pertanyaan selanjutnya.
@@ -23,6 +29,7 @@ export default function QuestionsPage() {
     localStorage.setItem(
       QUIZPROGRESS_KEY,
       JSON.stringify({
+        initialTimeLeft,
         username,
         index,
         questions,
@@ -43,7 +50,7 @@ export default function QuestionsPage() {
 
   // ngehandle finish event
   const handleFinish = () => {
-    return <></>;
+    setFinished(true);
   };
 
   // ngehandle nextQuestion event
@@ -54,11 +61,9 @@ export default function QuestionsPage() {
     );
     if (index < questions.length - 1) {
       if (isCorrect) {
-        setCorrectAnswers((prev) => prev + 1);
-      } else {
-        setIncorrectAnswers((prev) => prev + 1);
+        setCorrectAnswers((prev: number) => prev + 1);
       }
-      setIndex((prevIndex) => prevIndex + 1);
+      setIndex((prevIndex: number) => prevIndex + 1);
     } else {
       setFinished(true);
     }
@@ -66,7 +71,13 @@ export default function QuestionsPage() {
 
   if (finished) {
     return (
-      <div>{`Finished! Correct Answers: ${correctAnswers}, Incorrect Answers: ${incorrectAnswers}`}</div>
+      <div className="min-h-screen bg-white flex items-center justify-center">
+        <FinishCard
+          totalQuestions={questions.length}
+          correctAnswers={correctAnswers}
+          onRestart={() => navigate("/quiz/questions")}
+        ></FinishCard>
+      </div>
     );
   }
 
@@ -79,7 +90,11 @@ export default function QuestionsPage() {
     <>
       {loading && Spinner}
       <AnimatePresence>
-        <Timer seconds={300} onFinish={handleFinish} onTick={handleTick} />
+        <Timer
+          seconds={initialTimeLeft}
+          onFinish={handleFinish}
+          onTick={handleTick}
+        />
         <motion.div
           key={index}
           initial={{ opacity: 1, x: 50 }}

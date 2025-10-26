@@ -2,26 +2,8 @@ import { quizDatas } from "../datas/quizDatas";
 import { hashString } from "../utils/hashString";
 import { sessionKey } from "../utils/sessionKey";
 import api from "./axios";
-
-export type TriviaQuestion = {
-  category: string;
-  type: "multiple" | "boolean";
-  difficulty: string;
-  question: string;
-  hashed_answer: string;
-  answers: string[];
-};
-
-export type Response = {
-  category: string;
-  type: "multiple" | "boolean";
-  difficulty: string;
-  question: string;
-  correct_answer: string;
-  incorrect_answers: string[];
-  hashed_answer: string;
-  answers: string[];
-};
+import type { TriviaQuestion } from "../models/TriviaQuestion";
+import type { Response } from "../models/Reponse";
 
 function decodeHTML(html: string): string {
   const parser = new DOMParser();
