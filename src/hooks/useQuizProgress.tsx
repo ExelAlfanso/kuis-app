@@ -3,7 +3,7 @@ import type { TriviaQuestion } from "../models/TriviaQuestion";
 
 export const QUIZPROGRESS_KEY = "quizProgress";
 
-interface QuizProgressState {
+export interface QuizProgressState {
   initialTimeLeft: number;
   username: string | null;
   index: number;

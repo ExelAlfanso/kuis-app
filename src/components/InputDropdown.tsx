@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useOutsideClick } from "../hooks/useOutsideClick";
 import { CaretDownIcon } from "@phosphor-icons/react";
+import PrimaryButton from "./buttons/PrimaryButton";
 
 export interface InputDropdownProps {
   placeholder?: string;
@@ -22,6 +23,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
   const [value, setValue] = useState<string>((initialValue as string) || "");
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
     const target = e.currentTarget;
     setValue(target.innerText);
     onChange?.(e);
@@ -29,25 +31,25 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
   };
 
   return (
-    <div ref={dropdownRef} className="relative w-full text-primary">
+    <div ref={dropdownRef} className="relative w-full text-black ">
       {label && (
-        <label className="text-[13px] text-black-200 font-figtree font-medium mb-1 block">
+        <label className="text-[13px] font-figtree font-medium mb-1 block">
           {label}
         </label>
       )}
 
-      <button
+      <PrimaryButton
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`w-full px-4 py-2 text-left bg-gray-200 ${
+        className={`w-full px-4 py-2 text-left bg-white font-nunito ${
           value ? "text-black" : "text-gray-800"
-        } cursor-pointer rounded-3xl hover:bg-gray-300`}
+        } cursor-pointer rounded-xs hover:bg-gray-100 `}
       >
         <p>{value || placeholder || "Select an option"}</p>
-      </button>
+      </PrimaryButton>
 
       <div
-        className={`absolute left-0 right-0 mt-2 bg-white border border-gray-300 rounded-2xl shadow-lg transition-all duration-200 origin-top overflow-hidden ${
+        className={`overflow-y-scroll max-h-48 absolute left-0 right-0 mt-2 bg-white border-2 border-black rounded-xs shadow-lg transition-all duration-200 origin-top ${
           isOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
         } ${
           values && values.length > 6 ? "grid grid-cols-2" : "flex flex-col"
@@ -58,13 +60,13 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
             <button
               key={index}
               onClick={handleClick}
-              className="px-4 py-2 text-left cursor-pointer hover:bg-gray-100 text-primary"
+              className="px-4 py-2 font-semibold text-left text-black cursor-pointer font-nunito hover:bg-gray-100"
             >
               {val}
             </button>
           ))
         ) : (
-          <p className="px-4 py-2 text-gray-400 text-sm">
+          <p className="px-4 py-2 text-sm text-gray-400">
             No options available
           </p>
         )}
@@ -72,7 +74,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
 
       <button
         type="button"
-        className="absolute right-3 top-1/2 cursor-pointer"
+        className="absolute cursor-pointer right-3 top-1/2"
         onClick={(e) => {
           e.stopPropagation();
           setIsOpen((prev) => !prev);
@@ -80,7 +82,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
       >
         <CaretDownIcon
           size={20}
-          className="hover:text-orange-500 transition-colors duration-200"
+          className="transition-colors duration-200 hover:text-accent-two"
         />
       </button>
     </div>
