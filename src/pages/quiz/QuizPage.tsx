@@ -6,6 +6,7 @@ import QuestionsInputDropdown from "../../components/QuestionsInputDropdown";
 import { useLoading } from "../../hooks/useLoading";
 import { fetchTriviaQuestions } from "../../services/opentdb";
 import { useNavigate } from "react-router";
+import { QUIZPROGRESS_KEY } from "./QuestionsPage";
 
 export default function QuizPage() {
   const [quizStarted, setQuizStarted] = useState({
@@ -15,6 +16,8 @@ export default function QuizPage() {
   });
   const navigate = useNavigate();
   const { setLoading, loading, Spinner } = useLoading();
+
+  // ngehandle mulainya quiz yakni retrive TriviaQuestion[] dari service fetchTriviaQuestions
   const handleStartQuiz = async () => {
     setLoading(true);
     try {
@@ -23,7 +26,10 @@ export default function QuizPage() {
         quizStarted.category,
         quizStarted.difficulty
       );
-      navigate("/quiz/questions", { state: { questions: res } });
+      localStorage.removeItem(QUIZPROGRESS_KEY);
+      navigate("/quiz/questions", {
+        state: { questions: res, username: localStorage.getItem("username") },
+      });
       console.log(res);
     } catch (err) {
       console.log(err);

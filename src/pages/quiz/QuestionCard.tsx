@@ -1,4 +1,5 @@
 import type { TriviaQuestion } from "../../services/opentdb";
+import BooleanQuestion from "./BooleanQuestion";
 import MultipleChoice from "./MultipleChoice";
 
 interface QuestionCardProps {
@@ -12,9 +13,11 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
 }) => {
   return (
     <div>
-      <h1>Questions</h1>
       {currentQuestion.type === "multiple" && (
         <MultipleChoice onNext={onNext} triviaQuestion={currentQuestion} />
+      )}
+      {currentQuestion.type === "boolean" && (
+        <BooleanQuestion onNext={onNext} triviaQuestion={currentQuestion} />
       )}
     </div>
   );
