@@ -24,7 +24,9 @@ const IconInputField: React.FC<IconInputFieldProps> = ({
         placeholder={placeholder}
         onChange={onChange}
       ></InputField>
-      {Icon && <Icon size={32} className="absolute right-2 top-1/2" />}
+      {Icon && (
+        <Icon className="absolute right-2 top-1/2 text-[24px] xl:text-[32px]" />
+      )}
     </div>
   );
 };

@@ -12,10 +12,10 @@ const InputField: React.FC<InputFieldProps> = ({
 }) => {
   return (
     <div className="flex flex-col w-full text-black input-field">
-      {label && <label className="font-semibold font-nunito">{label}</label>}
+      {label && <label className="font-semibold font-nunito ">{label}</label>}
       <input
         type={type}
-        className="w-full p-2 py-4 font-semibold text-black border-2 border-black font-nunito rounded-xs focus:outline-none focus:bg-gray-100 "
+        className="w-full p-1 py-2 font-semibold text-black border-2 border-black xl:p-2 xl:py-4 font-nunito rounded-xs focus:outline-none focus:bg-gray-100 text-[13px] xl:text-base "
         placeholder={placeholder || ""}
         onChange={onChange}
       />

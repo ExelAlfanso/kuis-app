@@ -13,5 +13,9 @@ export default function Timer({ seconds, onTick, onFinish }: TimerProps) {
     onFinish: onFinish,
   });
 
-  return <div className="text-2xl font-bold">{timeLeft}s</div>;
+  return (
+    <div className="absolute -right-15 bg-white px-4 py-2 rounded-xs border-2 border-black font-bold font-nunito shadow-black shadow-[2px_2px_1px_rgba(0,0,0,0.5)]">
+      Time Left: {timeLeft}s
+    </div>
+  );
 }

@@ -1,29 +1,16 @@
-import Brutalist from "../assets/Brutalist.svg";
-import Train from "../assets/Train.svg";
-import Spark from "../assets/Spark.svg";
-import Globe from "../assets/Globe.svg";
-import PinDocument from "../assets/PinDocument.svg";
-import Plane from "../assets/Plane.svg";
-import Crown from "../assets/Crown.svg";
-import Clock from "../assets/Clock.svg";
-const QuisSectionBrutality = () => {
+import BaseBrutality from "./BaseBrutality";
+import BrutalityArrow from "../assets/BrutalistArrow.svg";
+
+const QuizSectionBrutality = () => {
   return (
-    <div>
-      <img className="absolute bottom-0 right-0" src={Brutalist} alt="" />
-      <img className="absolute top-[20%] right-[30%] " src={Train} alt="" />
-      <img className="absolute top-[50%] right-[23%] " src={Globe} alt="" />
-      <img className="absolute bottom-[10%] right-[12%] " src={Plane} alt="" />
-      <img className="absolute bottom-[28%] right-[3%] " src={Crown} alt="" />
+    <BaseBrutality>
       <img
-        className="absolute top-[20%] right-[5%] "
-        src={PinDocument}
+        className="hidden 2xl:block absolute top-[40%] left-[40%] "
+        src={BrutalityArrow}
         alt=""
       />
-      <img className="absolute top-[8%] right-[20%] " src={Clock} alt="" />
-      <img className="absolute top-[15%] right-[8%] " src={Spark} alt="" />
-      <img className="absolute bottom-0 right-1/4 " src="/Radio.svg" alt="" />
-    </div>
+    </BaseBrutality>
   );
 };
 
-export default QuisSectionBrutality;
+export default QuizSectionBrutality;

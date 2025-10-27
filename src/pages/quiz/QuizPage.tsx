@@ -2,11 +2,7 @@ import { useEffect, useState } from "react";
 import { fetchTriviaQuestions } from "../../services/opentdb";
 import { useNavigate } from "react-router";
 import { useQuizProgress, QUIZPROGRESS_KEY } from "../../hooks/useQuizProgress";
-import TopBar from "../../components/TopBar";
-import QuizSectionBrutality from "../../sections/QuizSectionBrutality";
 import { QuizForm } from "../../forms/QuizForm";
-import Spiral from "../../assets/Spiral.svg";
-import Sunflower from "../../assets/Sunflower.svg";
 export default function QuizPage() {
   const [quizStarted, setQuizStarted] = useState({
     amount: 10,
@@ -44,17 +40,13 @@ export default function QuizPage() {
     }
   };
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-primary ">
-      <TopBar></TopBar>
-      <img src={Spiral} alt="" className="absolute bottom-0 left-0" />
-      <img src={Sunflower} alt="" className="absolute left-20 w-65" />
+    <div className="flex items-center justify-center w-full pt-60 xl:pt-45">
       <QuizForm
         quizProgress={quizProgress}
         quizStarted={quizStarted}
         setQuizStarted={setQuizStarted}
         handleStartQuiz={handleStartQuiz}
       ></QuizForm>
-      <QuizSectionBrutality />
     </div>
   );
 }

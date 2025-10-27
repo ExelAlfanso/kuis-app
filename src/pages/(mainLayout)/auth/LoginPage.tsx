@@ -1,9 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router";
-import { useAuth } from "../../hooks/useAuth";
-import TopBar from "../../components/TopBar";
-import Brutality from "../../sections/Brutality";
-import LoginForm from "../../forms/LoginForm";
+import { useAuth } from "../../../hooks/useAuth";
+import LoginForm from "../../../forms/LoginForm";
 
 export default function LoginPage() {
   const { username, login } = useAuth();
@@ -18,14 +16,12 @@ export default function LoginPage() {
     navigate("/quiz");
   };
   return (
-    <div className="flex flex-col items-start justify-center min-h-screen bg-primary ">
-      <TopBar></TopBar>
+    <div className="flex items-center justify-center w-full xl:items-start xl:justify-start pt-45 xl:pt-45 ">
       <LoginForm
         onSubmit={handleSubmit}
         onChangeUsername={setUsername}
         username={inputUsername}
       />
-      <Brutality />
     </div>
   );
 }

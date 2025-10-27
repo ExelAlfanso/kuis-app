@@ -19,22 +19,22 @@ const LoginForm: React.FC<LoginFormProps> = ({
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative flex flex-col items-center justify-center w-1/4 bg-white border-2 border-black rounded-sm p-15 h-150 ml-50"
+        className="relative bg-white border-2 border-black rounded-sm w-80 xl:w-1/4 p-15 h-75 xl:h-150 xl:ml-50"
         onSubmit={(e) => {
           e.preventDefault();
           onSubmit();
         }}
       >
-        <span className="absolute -mt-20 -mb-8 text-7xl -left-20 rotate-25 bottom-10 text-stroke-1">
+        <span className="absolute -mt-20 -mb-8 text-4xl xl:text-7xl xl:-left-20 -left-15 rotate-25 bottom-8 xl:bottom-10 text-stroke-1">
           <Heading className="inline text-secondary">Triv</Heading>
           <Heading className="inline text-accent-two">Quiz!</Heading>
         </span>
         <img
           src={SparkTwo}
           alt=""
-          className="absolute w-75 -right-28 -top-28"
+          className="absolute w-25 -right-10 -top-10 xl:w-50 xl:-right-20 xl:-top-20"
         />
-        <h2 className="text-6xl font-semibold text-black font-nunito">
+        <h2 className="text-3xl font-semibold text-center text-black xl:text-6xl font-nunito">
           Sign in
         </h2>
         <motion.div

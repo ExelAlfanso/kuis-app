@@ -2,19 +2,25 @@ import { StrictMode } from "react";
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import LoginPage from "./pages/auth/LoginPage.tsx";
+import LoginPage from "./pages/(mainLayout)/auth/LoginPage.tsx";
 import QuizPage from "./pages/quiz/QuizPage.tsx";
 import QuestionsPage from "./pages/quiz/QuestionsPage.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
+import ArrowLayout from "./pages/quiz/ArrowLayout.tsx";
+import Layout from "./pages/(mainLayout)/Layout.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<LandingPage />}></Route>
-        <Route path="/login" element={<LoginPage />}></Route>
-        <Route path="/quiz" element={<QuizPage />}></Route>
-        <Route path="/quiz/questions" element={<QuestionsPage />}></Route>
+        <Route element={<Layout />}>
+          <Route path="/login" element={<LoginPage />}></Route>
+          <Route path="/" element={<LandingPage />}></Route>
+        </Route>
+        <Route element={<ArrowLayout />}>
+          <Route path="/quiz" element={<QuizPage />}></Route>
+          <Route path="/quiz/questions" element={<QuestionsPage />}></Route>
+        </Route>
       </Routes>
     </BrowserRouter>
   </StrictMode>

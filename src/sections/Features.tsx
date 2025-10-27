@@ -5,21 +5,21 @@ import {
 } from "@phosphor-icons/react";
 export default function Features() {
   return (
-    <>
-      <div className="flex flex-row gap-5 items-start justify-start mt-20">
-        <div className="text-white flex flex-col items-center justify-center mt-10">
-          <CirclesThreeIcon size={64}></CirclesThreeIcon>
-          <p className=" text-2xl">15+ Categories</p>
+    <section>
+      <div className="flex flex-row items-center justify-center gap-5 xl:items-start xl:justify-start">
+        <div className="flex flex-col items-center justify-center mt-10 text-white">
+          <CirclesThreeIcon className="h-auto w-14"></CirclesThreeIcon>
+          <p className="text-[16px] md:text-2xl">15+ Categories</p>
         </div>
-        <div className="text-white flex flex-col items-center justify-center mt-10">
-          <QuestionIcon size={64}></QuestionIcon>
-          <p className=" text-2xl">500+ Unique Questions</p>
+        <div className="flex flex-col items-center justify-center mt-10 text-white">
+          <QuestionIcon className="h-auto w-14"></QuestionIcon>
+          <p className="text-[16px] md:text-2xl">500+ Unique Questions</p>
         </div>
-        <div className="text-white flex flex-col items-center justify-center mt-10">
-          <FlagIcon size={64}></FlagIcon>
-          <p className=" text-2xl">3 Difficulties</p>
+        <div className="flex flex-col items-center justify-center mt-10 text-white">
+          <FlagIcon className="h-auto w-14"></FlagIcon>
+          <p className="text-[16px] md:text-2xl">3 Difficulties</p>
         </div>
       </div>
-    </>
+    </section>
   );
 }
