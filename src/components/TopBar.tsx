@@ -14,21 +14,18 @@ export default function TopBar() {
         className="flex items-center justify-center text-5xl font-semibold text-black whitespace-nowrap"
       >
         {[...Array(2)].map((_, i) => (
-          <div key={i} className="flex items-center mx-5">
-            <img src={BlackSpark} alt="separator" className="w-10 h-10" />
+          <div key={i} className="flex items-center ">
             {quizDatas.map((quiz, idx) => (
               <div
                 key={quiz.id || idx}
                 className="flex items-center justify-center mx-5"
               >
                 <span>{quiz.name}</span>
-                {idx < quizDatas.length - 1 && (
-                  <img
-                    src={BlackSpark}
-                    alt="separator"
-                    className="w-10 h-10 mx-5"
-                  />
-                )}
+                <img
+                  src={BlackSpark}
+                  alt="separator"
+                  className="w-10 h-10 mx-5"
+                />
               </div>
             ))}
           </div>

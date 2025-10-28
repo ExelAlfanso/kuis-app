@@ -46,9 +46,8 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
         } cursor-pointer rounded-xs hover:bg-gray-100 relative`}
       >
         <p>{value || placeholder || "Select an option"}</p>
-        <button
-          type="button"
-          className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
+        <span
+          className="absolute right-2 top-1/2 -translate-y-1/2 cursor-pointer"
           onClick={(e) => {
             e.stopPropagation();
             setIsOpen((prev) => !prev);
@@ -58,7 +57,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
             size={18}
             className="transition-colors duration-200 hover:text-accent-two"
           />
-        </button>
+        </span>
       </PrimaryButton>
 
       <div

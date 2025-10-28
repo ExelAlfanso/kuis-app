@@ -17,7 +17,6 @@ export default function QuizPage() {
   const { quizProgress } = useQuizProgress();
   // ngehandle mulainya quiz yakni retrive TriviaQuestion[] dari service fetchTriviaQuestions
   const handleStartQuiz = async () => {
-    // setLoading(true);
     try {
       const res = await fetchTriviaQuestions(
         quizStarted.amount,
@@ -35,8 +34,6 @@ export default function QuizPage() {
       console.log(res);
     } catch (err) {
       console.log(err);
-    } finally {
-      // setLoading(false);
     }
   };
   return (

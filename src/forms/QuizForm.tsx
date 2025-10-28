@@ -35,14 +35,14 @@ export const QuizForm: React.FC<QuizFormProps> = ({
   return (
     <AnimatePresence>
       <motion.div className="flex flex-col items-center justify-center text-center rounded-sm z-20">
-        <BaseCard className="relative flex flex-col items-center justify-center gap-5 w-100 xl:w-auto">
-          <img
-            src={SparkTwo}
-            alt=""
-            className="absolute -right-10 -top-10 w-25 xl:w-50 xl:-right-20 xl:-top-20"
-          />
+        <div className="relative gap-5 w-100 xl:w-auto">
           {quizProgress == null ? (
-            <>
+            <BaseCard className="w-100 xl:w-auto flex flex-col items-center h-[50vh]">
+              {/* <img
+                src={SparkTwo}
+                alt=""
+                className="absolute -right-10 -top-10 w-25 xl:w-50 xl:-right-20 xl:-top-20"
+              /> */}
               <h1 className="text-3xl font-semibold text-heading">
                 Hello {localStorage.getItem("username")}!
               </h1>
@@ -88,13 +88,18 @@ export const QuizForm: React.FC<QuizFormProps> = ({
                   Start Quiz
                 </PrimaryButton>
               </div>
-            </>
+            </BaseCard>
           ) : (
-            <div className="flex flex-col items-center justify-center font-semibold ">
-              <h1 className="mb-3 text-xl text-black xl:text-5xl">
+            <BaseCard className="font-semibold w-100 xl:w-auto h-[50vh] flex flex-col items-center justify-center bg-red-500">
+              {/* <img
+                src={SparkTwo}
+                alt=""
+                className="absolute -right-10 -top-10 w-25 xl:w-50 xl:-right-20 xl:-top-20"
+              /> */}
+              <h1 className="mb-3 text-2xl text-black xl:text-5xl">
                 You have quiz ongoing!
               </h1>
-              <p className="mb-5 text-x text-center text-accent-two">
+              <p className="mb-5 text-xs xl:text-2xl text-center text-accent-two">
                 Continue your quiz or finish it to start a new one.
               </p>
               <PrimaryButton
@@ -111,9 +116,9 @@ export const QuizForm: React.FC<QuizFormProps> = ({
               >
                 Continue Quiz
               </PrimaryButton>
-            </div>
+            </BaseCard>
           )}
-        </BaseCard>
+        </div>
       </motion.div>
     </AnimatePresence>
   );

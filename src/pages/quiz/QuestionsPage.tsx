@@ -19,21 +19,20 @@ export default function QuestionsPage() {
   const restartKey = location.state?.restartKey ?? "default";
   const [timeLeft] = useState(quizProgress?.timeLeft || 300);
 
-  // ✅ Redirect if no questions (user accessed directly)
+  // ngecegah direct access ke halaman questions tanpa quizProgress
   useEffect(() => {
     if (!questions || questions.length === 0) {
       navigate("/quiz", { replace: true });
     }
   }, [questions, navigate]);
 
-  // Prevent rendering before redirect
   if (!questions || questions.length === 0) {
     return null;
   }
 
   const currentQuestion = questions[index];
 
-  // --- handle saving timeLeft per tick
+  // ngehandle saving timeLeft per tick
   const handleTick = (time: number) => {
     localStorage.setItem(
       QUIZPROGRESS_KEY,
@@ -46,7 +45,7 @@ export default function QuestionsPage() {
     );
   };
 
-  // --- handle finish event
+  // ngehandle finish event
   const handleFinish = () => {
     deleteQuizProgress();
     setFinished(true);
@@ -75,7 +74,7 @@ export default function QuestionsPage() {
     );
   }
 
-  // --- handle nextQuestion event
+  // ngehandle nextQuestion event
   const handleNextQuestion = async (selected: string) => {
     const isCorrect = await checkAnswer(
       selected,
@@ -91,7 +90,7 @@ export default function QuestionsPage() {
     }
   };
 
-  // --- check quiz answer with hash
+  // ngecheck quiz answer with hash
   async function checkAnswer(selected: string, hashedAnswer: string) {
     const userHash = await hashString(selected + sessionKey);
     return userHash === hashedAnswer;
