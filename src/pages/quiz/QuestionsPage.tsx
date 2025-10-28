@@ -17,7 +17,7 @@ export default function QuestionsPage() {
     quizProgress?.correctAnswers || 0
   );
   const restartKey = location.state?.restartKey ?? "default";
-  const [timeLeft] = useState(quizProgress?.timeLeft || 10);
+  const [timeLeft] = useState(quizProgress?.timeLeft || 300);
 
   // ngecegah direct access ke halaman questions tanpa quizProgress
   useEffect(() => {
