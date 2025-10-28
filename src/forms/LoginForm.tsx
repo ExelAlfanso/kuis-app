@@ -19,7 +19,7 @@ const LoginForm: React.FC<LoginFormProps> = ({
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative bg-white border-2 border-black rounded-sm w-80 xl:w-1/4 p-15 h-75 xl:h-150 xl:ml-50"
+        className="relative bg-white border-2 border-black rounded-sm w-85 xl:w-1/4 p-15 h-120 xl:h-150 xl:ml-50 my-auto flex flex-col items-center justify-center shadow-black shadow-[5px_5px_1px_rgba(0,0,0,0.5)]"
         onSubmit={(e) => {
           e.preventDefault();
           onSubmit();

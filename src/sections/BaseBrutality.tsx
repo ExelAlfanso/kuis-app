@@ -8,7 +8,7 @@ import Crown from "../assets/Crown.svg";
 import Clock from "../assets/Clock.svg";
 import Radio from "../assets/Radio.svg";
 
-const BaseBrutality = ({ children }: { children: React.ReactNode }) => {
+const BaseBrutality = ({ children }: { children?: React.ReactNode }) => {
   return (
     <div className="pointer-events-none">
       <img

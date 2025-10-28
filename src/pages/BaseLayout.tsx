@@ -6,7 +6,7 @@ export default function BaseLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="relative min-h-screen bg-primary">
+    <div className="relative min-h-screen overflow-hidden bg-primary">
       <TopBar />
       <img
         src={Spiral}

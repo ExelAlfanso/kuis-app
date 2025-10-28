@@ -31,9 +31,9 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
   };
 
   return (
-    <div ref={dropdownRef} className="relative w-full text-black ">
+    <div ref={dropdownRef} className="relative w-1/2 xl:w-full text-black">
       {label && (
-        <label className="text-[13px] font-figtree font-medium mb-1 block">
+        <label className="text-[12px] text-left font-figtree font-medium mb-1 block">
           {label}
         </label>
       )}
@@ -41,47 +41,51 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
       <PrimaryButton
         type="button"
         onClick={() => setIsOpen((prev) => !prev)}
-        className={`w-full px-4 py-2 text-left bg-white font-nunito ${
+        className={`w-full px-3 py-2 text-left bg-white font-nunito ${
           value ? "text-black" : "text-gray-800"
-        } cursor-pointer rounded-xs hover:bg-gray-100 `}
+        } cursor-pointer rounded-xs hover:bg-gray-100 relative`}
       >
         <p>{value || placeholder || "Select an option"}</p>
       </PrimaryButton>
 
+      {/* Dropdown Menu */}
       <div
-        className={`overflow-y-scroll max-h-48 absolute left-0 right-0 mt-2 bg-white border-2 border-black rounded-xs shadow-lg transition-all duration-200 origin-top ${
-          isOpen ? "scale-y-100 opacity-100" : "scale-y-0 opacity-0"
-        } ${
-          values && values.length > 6 ? "grid grid-cols-2" : "flex flex-col"
-        } z-50`}
+        className={`absolute left-0 right-0 mt-1 bg-white border border-black rounded-xs shadow-lg overflow-y-auto max-h-40 transition-transform duration-200 origin-top transform scale-y-0 opacity-0 ${
+          isOpen ? "scale-y-100 opacity-100" : ""
+        } flex flex-col z-50
+        xl:${
+          values && values.length > 6
+            ? "grid grid-cols-2 gap-1"
+            : "flex flex-col"
+        }
+        `}
       >
         {values && values.length > 0 ? (
           values.map((val, index) => (
             <button
               key={index}
               onClick={handleClick}
-              className="px-4 py-2 font-semibold text-left text-black cursor-pointer font-nunito hover:bg-gray-100"
+              className="px-3 py-2 font-medium text-left text-black cursor-pointer font-nunito hover:bg-gray-100 "
             >
               {val}
             </button>
           ))
         ) : (
-          <p className="px-4 py-2 text-sm text-gray-400">
-            No options available
-          </p>
+          <p className="px-3 py-2 text-gray-400">No options available</p>
         )}
       </div>
 
+      {/* Caret Icon */}
       <button
         type="button"
-        className="absolute cursor-pointer right-3 top-1/2"
+        className="absolute right-2 top-1/2 cursor-pointer"
         onClick={(e) => {
           e.stopPropagation();
           setIsOpen((prev) => !prev);
         }}
       >
         <CaretDownIcon
-          size={20}
+          size={18}
           className="transition-colors duration-200 hover:text-accent-two"
         />
       </button>

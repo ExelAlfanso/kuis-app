@@ -1,4 +1,4 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useState } from "react";
 import QuestionCard from "../../components/quiz/QuestionCard";
 import { hashString } from "../../utils/hashString";
@@ -8,6 +8,7 @@ import FinishPage from "./FinishPage";
 
 export default function QuestionsPage() {
   const location = useLocation();
+  const navigate = useNavigate();
   const { deleteQuizProgress } = useQuizProgress();
   const { quizProgress, questions, username } = location.state || {};
   const [finished, setFinished] = useState(false);
@@ -15,7 +16,9 @@ export default function QuestionsPage() {
   const [correctAnswers, setCorrectAnswers] = useState(
     quizProgress?.correctAnswers || 0
   );
-  const [initialTimeLeft] = useState(quizProgress?.timeLeft || 300);
+  const [initialTimeLeft, setInitialTimeLeft] = useState(
+    quizProgress?.timeLeft || 300
+  );
 
   const currentQuestion = questions[index];
 
@@ -38,8 +41,18 @@ export default function QuestionsPage() {
     setFinished(true);
   };
   const handleRestart = () => {
-    setIndex(0);
-    setCorrectAnswers(0);
+    setInitialTimeLeft(300);
+    navigate("/quiz/questions", {
+      state: {
+        quizProgress: quizProgress,
+        questions: quizProgress.questions,
+        username: quizProgress.username,
+      },
+    });
+  };
+  const handleNewQuiz = () => {
+    deleteQuizProgress();
+    navigate("/quiz");
   };
 
   if (finished) {
@@ -48,6 +61,7 @@ export default function QuestionsPage() {
         totalQuestions={questions.length}
         correctAnswers={correctAnswers}
         onRestart={handleRestart}
+        onNewQuiz={handleNewQuiz}
       ></FinishPage>
     );
   }
@@ -72,8 +86,8 @@ export default function QuestionsPage() {
     return userHash === hashedAnswer;
   }
   return (
-    <div className="">
-      <div className="text-3xl font-bold font-baloo text-accent-one">
+    <div className="flex flex-col items-start pt-50 px-15 ">
+      <div className="text-4xl font-bold font-nunito text-accent-one">
         Category: {currentQuestion.category}
       </div>
       <div className="text-3xl font-nunito">{currentQuestion.question}</div>

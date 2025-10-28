@@ -37,7 +37,7 @@ export const QuizForm: React.FC<QuizFormProps> = ({
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative flex flex-col items-center justify-center text-center bg-white border-2 border-black rounded-sm w-80 xl:w-1/3 h-75 xl:h-150"
+        className="relative flex flex-col items-center justify-center text-center bg-white border-2 border-black rounded-sm w-90 xl:w-1/3 h-150 z-20"
       >
         <img
           src={SparkTwo}
@@ -53,7 +53,7 @@ export const QuizForm: React.FC<QuizFormProps> = ({
               <h2 className="text-2xl font-semibold text-heading">
                 Choose your interest!
               </h2>
-              <div className="flex flex-col gap-4 w-100">
+              <div className="flex flex-col items-center gap-4 w-100">
                 <QuestionsInputDropdown
                   label={"Number of Questions"}
                   initialValue={"10"}
@@ -87,7 +87,7 @@ export const QuizForm: React.FC<QuizFormProps> = ({
                   onClick={() => {
                     handleStartQuiz();
                   }}
-                  className="w-full"
+                  className="w-1/2 xl:w-full"
                 >
                   Start Quiz
                 </PrimaryButton>
@@ -95,10 +95,10 @@ export const QuizForm: React.FC<QuizFormProps> = ({
             </>
           ) : (
             <div className="flex flex-col items-center justify-center font-semibold ">
-              <h1 className="mb-3 text-xl text-black xl:text-3xl">
+              <h1 className="mb-3 text-xl text-black xl:text-5xl">
                 You have quiz ongoing!
               </h1>
-              <p className="mb-5 text-xs text-center text-accent-two">
+              <p className="mb-5 text-x text-center text-accent-two">
                 Continue your quiz or finish it to start a new one.
               </p>
               <PrimaryButton

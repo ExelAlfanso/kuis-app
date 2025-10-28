@@ -2,6 +2,7 @@ import type { TriviaQuestion } from "../../models/TriviaQuestion";
 import Choices from "./Choices";
 import SparkTwo from "../../assets/SparkTwo.svg";
 import Timer from "../Timer";
+import BaseCard from "../BaseCard";
 
 interface QuestionCardProps {
   currentQuestion: TriviaQuestion;
@@ -19,18 +20,25 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   onTick,
 }) => {
   return (
-    <div className="relative w-[54vw] shadow-black shadow-[3px_3px_1px_rgba(0,0,0,0.5)]">
+    <BaseCard className="relative h-[55vh] w-[54vw]  xl:pr-35 bg-white ">
       <div>
         <img
           src={SparkTwo}
           alt=""
           className="absolute w-25 -right-10 -top-10 xl:w-50 xl:-right-20 xl:-top-20"
         />
-        {time && <Timer seconds={time} onFinish={onFinish} onTick={onTick} />}
+        {time && (
+          <Timer
+            className="absolute -right-15 top-0"
+            seconds={time}
+            onFinish={onFinish}
+            onTick={onTick}
+          />
+        )}
       </div>
 
       <Choices onNext={onNext} triviaQuestion={currentQuestion} />
-    </div>
+    </BaseCard>
   );
 };
 

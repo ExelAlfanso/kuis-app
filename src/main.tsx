@@ -6,18 +6,18 @@ import LoginPage from "./pages/(mainLayout)/auth/LoginPage.tsx";
 import QuizPage from "./pages/quiz/QuizPage.tsx";
 import QuestionsPage from "./pages/quiz/QuestionsPage.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
-import ArrowLayout from "./pages/quiz/ArrowLayout.tsx";
-import Layout from "./pages/(mainLayout)/Layout.tsx";
+import LayoutTwo from "./pages/quiz/Layout.tsx";
+import LayoutFirst from "./pages/(mainLayout)/Layout.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route element={<Layout />}>
+        <Route element={<LayoutFirst />}>
           <Route path="/login" element={<LoginPage />}></Route>
           <Route path="/" element={<LandingPage />}></Route>
         </Route>
-        <Route element={<ArrowLayout />}>
+        <Route element={<LayoutTwo />}>
           <Route path="/quiz" element={<QuizPage />}></Route>
           <Route path="/quiz/questions" element={<QuestionsPage />}></Route>
         </Route>

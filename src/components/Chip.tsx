@@ -5,7 +5,7 @@ interface ChipProps {
 const Chip: React.FC<ChipProps> = ({ className, children }) => {
   return (
     <div
-      className={`flex flex-row justify-center items-center rounded-3xl text-xl gap-1 w-15 ${className}`}
+      className={`flex flex-row justify-center items-center rounded-xs text-4xl gap-1 w-25 border-black border-2 ${className}`}
     >
       {children}
     </div>

@@ -3,41 +3,48 @@ import {
   QuestionIcon,
   XCircleIcon,
 } from "@phosphor-icons/react";
-import Button from "../buttons/Button";
-import Chip from "./Chip";
+import Chip from "../Chip";
+import BaseCard from "../BaseCard";
+import PrimaryButton from "../buttons/PrimaryButton";
+import SecondaryButton from "../buttons/SecondaryButton";
 
 interface FinishCardProps {
   totalQuestions: number;
   correctAnswers: number;
   onRestart: () => void;
+  onNewQuiz: () => void;
 }
 
 const FinishCard: React.FC<FinishCardProps> = ({
   totalQuestions,
   correctAnswers,
   onRestart,
+  onNewQuiz,
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center p-4 text-center bg-white border border-gray-300 rounded shadow-md ">
-      <h2 className="mb-2 text-lg font-semibold">Quiz Finished!</h2>
-
-      <p className="mb-4 text-gray-700">Here are you results!</p>
-      <div className="flex flex-row items-center justify-center gap-2 mb-5">
-        <Chip className="text-white bg-green-600">
+    <BaseCard className="flex flex-col items-center justify-center text-center rounded-xs h-[55vh] w-[40vw] gap-10">
+      <h2 className="mb-2 text-3xl font-nunito font-semibold">
+        Here are your results!
+      </h2>
+      <div className="flex flex-row items-center justify-center gap-5 mb-5 text-black font-bold">
+        <Chip className="bg-accent-one ">
           <CheckCircleIcon />
           {correctAnswers}
         </Chip>
-        <Chip className="text-white bg-red-600">
+        <Chip className="bg-accent-two">
           <XCircleIcon />
           {totalQuestions - correctAnswers}
         </Chip>
-        <Chip className="text-white bg-black">
+        <Chip className="bg-primary">
           <QuestionIcon />
           {totalQuestions}
         </Chip>
       </div>
-      <Button onClick={onRestart}>Restart Quiz</Button>
-    </div>
+      <div className="space-x-4">
+        <PrimaryButton onClick={onRestart}>Try again?</PrimaryButton>
+        <SecondaryButton onClick={onNewQuiz}>Start a new quiz</SecondaryButton>
+      </div>
+    </BaseCard>
   );
 };
 

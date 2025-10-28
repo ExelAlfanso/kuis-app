@@ -3,7 +3,7 @@ import { Outlet } from "react-router-dom";
 import BaseLayout from "../BaseLayout";
 import Sunflower from "../../assets/Sunflower.svg";
 
-export default function ArrowLayout() {
+export default function Layout() {
   return (
     <BaseLayout>
       <img
