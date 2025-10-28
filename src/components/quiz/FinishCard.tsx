@@ -43,19 +43,19 @@ const FinishCard: React.FC<FinishCardProps> = ({
       >
         {[
           {
-            key: "correct",
+            key: "Correct",
             icon: <CheckCircleIcon />,
             value: correctAnswers,
             class: "bg-accent-one",
           },
           {
-            key: "wrong",
+            key: "Wrong",
             icon: <XCircleIcon />,
             value: totalQuestions - correctAnswers,
             class: "bg-accent-two",
           },
           {
-            key: "total",
+            key: "Total",
             icon: <QuestionIcon />,
             value: totalQuestions,
             class: "bg-primary",
@@ -77,6 +77,7 @@ const FinishCard: React.FC<FinishCardProps> = ({
               },
             }}
           >
+            <h3 className="text-left">{chip.key}</h3>
             <Chip className={chip.class}>
               {chip.icon}
               {chip.value}

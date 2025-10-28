@@ -1,5 +1,5 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import QuestionCard from "../../components/quiz/QuestionCard";
 import { hashString } from "../../utils/hashString";
 import { sessionKey } from "../../utils/sessionKey";
@@ -19,9 +19,21 @@ export default function QuestionsPage() {
   const restartKey = location.state?.restartKey ?? "default";
   const [timeLeft] = useState(quizProgress?.timeLeft || 300);
 
+  // ✅ Redirect if no questions (user accessed directly)
+  useEffect(() => {
+    if (!questions || questions.length === 0) {
+      navigate("/quiz", { replace: true });
+    }
+  }, [questions, navigate]);
+
+  // Prevent rendering before redirect
+  if (!questions || questions.length === 0) {
+    return null;
+  }
+
   const currentQuestion = questions[index];
 
-  // ngehandle saving timeLeft per tick
+  // --- handle saving timeLeft per tick
   const handleTick = (time: number) => {
     localStorage.setItem(
       QUIZPROGRESS_KEY,
@@ -34,11 +46,12 @@ export default function QuestionsPage() {
     );
   };
 
-  // ngehandle finish event
+  // --- handle finish event
   const handleFinish = () => {
     deleteQuizProgress();
     setFinished(true);
   };
+
   const handleRestart = () => {
     deleteQuizProgress();
     setIndex(0);
@@ -58,10 +71,11 @@ export default function QuestionsPage() {
         correctAnswers={correctAnswers}
         onRestart={handleRestart}
         onNewQuiz={handleNewQuiz}
-      ></FinishPage>
+      />
     );
   }
-  // ngehandle nextQuestion event
+
+  // --- handle nextQuestion event
   const handleNextQuestion = async (selected: string) => {
     const isCorrect = await checkAnswer(
       selected,
@@ -76,11 +90,13 @@ export default function QuestionsPage() {
       handleFinish();
     }
   };
-  // ngecheck jawaban quiz dengan hash
+
+  // --- check quiz answer with hash
   async function checkAnswer(selected: string, hashedAnswer: string) {
     const userHash = await hashString(selected + sessionKey);
     return userHash === hashedAnswer;
   }
+
   return (
     <div
       key={restartKey}
@@ -99,9 +115,7 @@ export default function QuestionsPage() {
         onNext={handleNextQuestion}
         time={timeLeft}
         onFinish={handleFinish}
-        onTick={(t) => {
-          handleTick(t);
-        }}
+        onTick={handleTick}
       />
     </div>
   );

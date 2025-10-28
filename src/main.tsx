@@ -8,6 +8,7 @@ import QuestionsPage from "./pages/quiz/QuestionsPage.tsx";
 import LandingPage from "./pages/LandingPage.tsx";
 import LayoutTwo from "./pages/quiz/Layout.tsx";
 import LayoutFirst from "./pages/(mainLayout)/Layout.tsx";
+import ProtectedRoute from "./components/ProtectedRoute.tsx";
 
 createRoot(document.getElementById("root")!).render(
   <StrictMode>
@@ -19,7 +20,14 @@ createRoot(document.getElementById("root")!).render(
         </Route>
         <Route element={<LayoutTwo />}>
           <Route path="/quiz" element={<QuizPage />}></Route>
-          <Route path="/quiz/questions" element={<QuestionsPage />}></Route>
+          <Route
+            path="/quiz/questions"
+            element={
+              <ProtectedRoute>
+                <QuestionsPage />
+              </ProtectedRoute>
+            }
+          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>
