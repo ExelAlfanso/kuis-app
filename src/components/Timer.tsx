@@ -1,9 +1,9 @@
-import useTimer from "../hooks/useTimer";
+import { useEffect, useRef, useState } from "react";
 
 interface TimerProps {
   seconds: number;
+  onTick?: (timeLeft: number) => void;
   onFinish?: () => void;
-  onTick?: (time: number) => void;
   className?: string;
 }
 
@@ -13,11 +13,31 @@ export default function Timer({
   onFinish,
   className,
 }: TimerProps) {
-  const { timeLeft } = useTimer({
-    initialTime: seconds,
-    onTick: onTick,
-    onFinish: onFinish,
-  });
+  const [timeLeft, setTimeLeft] = useState(seconds);
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+
+  useEffect(() => {
+    // Only start interval once
+    intervalRef.current = setInterval(() => {
+      setTimeLeft((prev) => {
+        const next = prev - 1;
+        onTick?.(next);
+        if (next <= 0) {
+          clearInterval(intervalRef.current!);
+          onFinish?.();
+          return 0;
+        }
+        return next;
+      });
+    }, 1000);
+
+    return () => clearInterval(intervalRef.current!);
+  }, []); // empty dependency => runs once on mount
+
+  // Optional: only reset when parent explicitly wants to (like new quiz)
+  useEffect(() => {
+    setTimeLeft(seconds);
+  }, [seconds]);
 
   return (
     <div

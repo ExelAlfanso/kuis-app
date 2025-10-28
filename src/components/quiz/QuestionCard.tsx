@@ -20,7 +20,7 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   onTick,
 }) => {
   return (
-    <BaseCard className="relative h-[55vh] w-[54vw]  xl:pr-35 bg-white ">
+    <BaseCard className="relative h-[55vh] w-full xl:w-[54vw] xl:pr-35 bg-white ">
       <div>
         <img
           src={SparkTwo}

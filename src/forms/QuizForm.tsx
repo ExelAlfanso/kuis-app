@@ -7,6 +7,7 @@ import InputDropdown from "../components/InputDropdown";
 import { useNavigate } from "react-router-dom";
 import type { QuizProgressState } from "../hooks/useQuizProgress";
 import PrimaryButton from "../components/buttons/PrimaryButton";
+import BaseCard from "../components/BaseCard";
 interface QuizFormProps {
   //   onSubmit: () => void;
   quizProgress: QuizProgressState | null;
@@ -37,14 +38,14 @@ export const QuizForm: React.FC<QuizFormProps> = ({
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ duration: 0.5, ease: "easeOut" }}
-        className="relative flex flex-col items-center justify-center text-center bg-white border-2 border-black rounded-sm w-90 xl:w-1/3 h-150 z-20"
+        className="flex flex-col items-center justify-center text-center rounded-sm z-20 bg-red-500"
       >
-        <img
-          src={SparkTwo}
-          alt=""
-          className="absolute w-25 -right-10 -top-10 xl:w-50 xl:-right-20 xl:-top-20"
-        />
-        <div className="flex flex-col items-center justify-center gap-5">
+        <BaseCard className="relative flex flex-col items-center justify-center gap-5 w-100 xl:w-auto">
+          <img
+            src={SparkTwo}
+            alt=""
+            className="absolute -right-10 -top-10 w-25 xl:w-50 xl:-right-20 xl:-top-20"
+          />
           {quizProgress == null ? (
             <>
               <h1 className="text-3xl font-semibold text-heading">
@@ -117,7 +118,7 @@ export const QuizForm: React.FC<QuizFormProps> = ({
               </PrimaryButton>
             </div>
           )}
-        </div>
+        </BaseCard>
       </motion.div>
     </AnimatePresence>
   );

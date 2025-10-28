@@ -1,4 +1,5 @@
 export type TriviaQuestion = {
+  id: string;
   category: string;
   type: "multiple" | "boolean";
   difficulty: string;

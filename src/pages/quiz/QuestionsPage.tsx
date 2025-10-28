@@ -16,9 +16,8 @@ export default function QuestionsPage() {
   const [correctAnswers, setCorrectAnswers] = useState(
     quizProgress?.correctAnswers || 0
   );
-  const [initialTimeLeft, setInitialTimeLeft] = useState(
-    quizProgress?.timeLeft || 300
-  );
+  const restartKey = location.state?.restartKey ?? "default";
+  const [timeLeft] = useState(quizProgress?.timeLeft || 300);
 
   const currentQuestion = questions[index];
 
@@ -41,15 +40,12 @@ export default function QuestionsPage() {
     setFinished(true);
   };
   const handleRestart = () => {
-    setInitialTimeLeft(300);
-    navigate("/quiz/questions", {
-      state: {
-        quizProgress: quizProgress,
-        questions: quizProgress.questions,
-        username: quizProgress.username,
-      },
-    });
+    deleteQuizProgress();
+    setIndex(0);
+    setCorrectAnswers(0);
+    setFinished(false);
   };
+
   const handleNewQuiz = () => {
     deleteQuizProgress();
     navigate("/quiz");
@@ -77,7 +73,7 @@ export default function QuestionsPage() {
       }
       setIndex((prevIndex: number) => prevIndex + 1);
     } else {
-      setFinished(true);
+      handleFinish();
     }
   };
   // ngecheck jawaban quiz dengan hash
@@ -86,17 +82,26 @@ export default function QuestionsPage() {
     return userHash === hashedAnswer;
   }
   return (
-    <div className="flex flex-col items-start pt-50 px-15 ">
-      <div className="text-4xl font-bold font-nunito text-accent-one">
-        Category: {currentQuestion.category}
+    <div
+      key={restartKey}
+      className="flex flex-col items-center xl:items-start pt-50 px-15"
+    >
+      <div className="z-20">
+        <div className="text-2xl xl:text-5xl font-bold font-nunito text-accent-one">
+          Category: {currentQuestion.category}
+        </div>
+        <div className="text-xl xl:text-3xl font-nunito">
+          {currentQuestion.question}
+        </div>
       </div>
-      <div className="text-3xl font-nunito">{currentQuestion.question}</div>
       <QuestionCard
         currentQuestion={currentQuestion}
         onNext={handleNextQuestion}
-        time={initialTimeLeft}
+        time={timeLeft}
         onFinish={handleFinish}
-        onTick={handleTick}
+        onTick={(t) => {
+          handleTick(t);
+        }}
       />
     </div>
   );

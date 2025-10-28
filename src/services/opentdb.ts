@@ -33,6 +33,7 @@ export async function fetchTriviaQuestions(
       const shuffledAnswers = allAnswers.sort(() => Math.random() - 0.5);
 
       return {
+        id: crypto.randomUUID(),
         type: q.type,
         category: q.category,
         difficulty: q.difficulty,

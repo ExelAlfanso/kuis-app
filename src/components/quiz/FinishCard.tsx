@@ -22,7 +22,7 @@ const FinishCard: React.FC<FinishCardProps> = ({
   onNewQuiz,
 }) => {
   return (
-    <BaseCard className="flex flex-col items-center justify-center text-center rounded-xs h-[55vh] w-[40vw] gap-10">
+    <BaseCard className="flex flex-col items-center justify-center text-center rounded-xs h-[55vh] w-[70vw] xl:w-[30vw] gap-10 z-20">
       <h2 className="mb-2 text-3xl font-nunito font-semibold">
         Here are your results!
       </h2>

@@ -52,7 +52,7 @@ const BaseBrutality = ({ children }: { children?: React.ReactNode }) => {
         alt=""
       />
       <img
-        className="absolute top-[70%] right-[85%] xl:top-[20%] xl:left-[60%] w-[6vw]"
+        className="absolute top-[70%] right-[85%] xl:top-[37%] xl:left-[63%] w-[6vw]"
         src={Spark}
         alt=""
       />
