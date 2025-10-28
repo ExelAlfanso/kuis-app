@@ -7,6 +7,7 @@ import Chip from "../Chip";
 import BaseCard from "../BaseCard";
 import PrimaryButton from "../buttons/PrimaryButton";
 import SecondaryButton from "../buttons/SecondaryButton";
+import { motion } from "motion/react";
 
 interface FinishCardProps {
   totalQuestions: number;
@@ -26,20 +27,64 @@ const FinishCard: React.FC<FinishCardProps> = ({
       <h2 className="mb-2 text-3xl font-nunito font-semibold">
         Here are your results!
       </h2>
-      <div className="flex flex-row items-center justify-center gap-5 mb-5 text-black font-bold">
-        <Chip className="bg-accent-one ">
-          <CheckCircleIcon />
-          {correctAnswers}
-        </Chip>
-        <Chip className="bg-accent-two">
-          <XCircleIcon />
-          {totalQuestions - correctAnswers}
-        </Chip>
-        <Chip className="bg-primary">
-          <QuestionIcon />
-          {totalQuestions}
-        </Chip>
-      </div>
+
+      <motion.div
+        className="flex flex-row items-center justify-center gap-5 mb-5 text-black font-bold"
+        initial="hidden"
+        animate="visible"
+        variants={{
+          hidden: {},
+          visible: {
+            transition: {
+              staggerChildren: 0.15,
+            },
+          },
+        }}
+      >
+        {[
+          {
+            key: "correct",
+            icon: <CheckCircleIcon />,
+            value: correctAnswers,
+            class: "bg-accent-one",
+          },
+          {
+            key: "wrong",
+            icon: <XCircleIcon />,
+            value: totalQuestions - correctAnswers,
+            class: "bg-accent-two",
+          },
+          {
+            key: "total",
+            icon: <QuestionIcon />,
+            value: totalQuestions,
+            class: "bg-primary",
+          },
+        ].map((chip) => (
+          <motion.div
+            key={chip.key}
+            variants={{
+              hidden: { scale: 0, opacity: 0 },
+              visible: {
+                scale: [1.3, 1],
+                opacity: 1,
+                transition: {
+                  type: "spring",
+                  stiffness: 400,
+                  damping: 15,
+                  delay: 0.55,
+                },
+              },
+            }}
+          >
+            <Chip className={chip.class}>
+              {chip.icon}
+              {chip.value}
+            </Chip>
+          </motion.div>
+        ))}
+      </motion.div>
+
       <div className="space-x-4">
         <PrimaryButton onClick={onRestart}>Try again?</PrimaryButton>
         <SecondaryButton onClick={onNewQuiz}>Start a new quiz</SecondaryButton>

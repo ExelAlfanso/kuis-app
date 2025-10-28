@@ -9,7 +9,7 @@ export default function Layout() {
       <img
         src={Sunflower}
         alt=""
-        className="absolute hidden w-32 xl:block bottom-70 -left-10 md:top-50 md:left-10 lg:w-auto -z-0"
+        className="absolute hidden xl:w-60 xl:block bottom-70 -left-10 md:top-50 md:left-10 lg:w-auto"
       />
       <Outlet />
       <QuizSectionBrutality />

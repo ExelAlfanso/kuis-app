@@ -87,10 +87,10 @@ export default function QuestionsPage() {
       className="flex flex-col items-center xl:items-start pt-50 px-15"
     >
       <div className="z-20">
-        <div className="text-2xl xl:text-5xl font-bold font-nunito text-accent-one">
+        <div className="text-2xl xl:text-5xl font-bold font-nunito text-accent-two">
           Category: {currentQuestion.category}
         </div>
-        <div className="text-xl xl:text-3xl font-nunito">
+        <div className="text-xl xl:text-3xl font-nunito font-bold">
           {currentQuestion.question}
         </div>
       </div>

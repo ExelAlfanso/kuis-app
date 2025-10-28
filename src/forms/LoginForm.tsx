@@ -4,6 +4,7 @@ import PrimaryButton from "../components/buttons/PrimaryButton";
 import SparkTwo from "../assets/SparkTwo.svg";
 import Heading from "../components/Heading";
 import { AnimatePresence, motion } from "motion/react";
+import { scalePop, staggerContainer } from "../animations/variants";
 interface LoginFormProps {
   onSubmit: () => void;
   username: string;
@@ -16,9 +17,9 @@ const LoginForm: React.FC<LoginFormProps> = ({
   return (
     <AnimatePresence>
       <motion.form
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
+        variants={scalePop}
+        initial="hidden"
+        animate="visible"
         className="relative bg-white border-2 border-black rounded-sm w-85 xl:w-1/4 p-15 h-120 xl:h-150 xl:ml-50 my-auto flex flex-col items-center justify-center shadow-black shadow-[5px_5px_1px_rgba(0,0,0,0.5)]"
         onSubmit={(e) => {
           e.preventDefault();
@@ -40,23 +41,29 @@ const LoginForm: React.FC<LoginFormProps> = ({
         <motion.div
           initial={{ scaleX: 0 }}
           animate={{ scaleX: 1 }}
-          transition={{ duration: 0.25, ease: "easeIn", delay: 0.5 }}
+          transition={{ duration: 0.1, ease: "easeIn", delay: 0.4 }}
           className="w-full my-4 border-t-2 border-black"
         ></motion.div>
         <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 0.25, ease: "easeIn", delay: 0.75 }}
+          variants={staggerContainer}
+          initial="hidden"
+          animate="visible"
           className="flex flex-col w-full gap-4"
         >
-          <IconInputField
-            type="text"
-            placeholder="Enter your username"
-            label="Username"
-            Icon={EnvelopeIcon}
-            onChange={(e) => onChangeUsername?.(e.target.value)}
-          />
-          <PrimaryButton type="submit">Sign in</PrimaryButton>
+          <motion.div variants={scalePop}>
+            <IconInputField
+              type="text"
+              placeholder="Enter your username"
+              label="Username"
+              Icon={EnvelopeIcon}
+              onChange={(e) => onChangeUsername?.(e.target.value)}
+            />
+          </motion.div>
+          <motion.div variants={scalePop} initial="hidden" animate="visible">
+            <PrimaryButton className="w-full" type="submit">
+              Sign in
+            </PrimaryButton>
+          </motion.div>
         </motion.div>
       </motion.form>
     </AnimatePresence>

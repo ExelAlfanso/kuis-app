@@ -34,12 +34,7 @@ export const QuizForm: React.FC<QuizFormProps> = ({
   const navigate = useNavigate();
   return (
     <AnimatePresence>
-      <motion.div
-        initial={{ scale: 0 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 0.5, ease: "easeOut" }}
-        className="flex flex-col items-center justify-center text-center rounded-sm z-20 bg-red-500"
-      >
+      <motion.div className="flex flex-col items-center justify-center text-center rounded-sm z-20">
         <BaseCard className="relative flex flex-col items-center justify-center gap-5 w-100 xl:w-auto">
           <img
             src={SparkTwo}

@@ -3,6 +3,7 @@ import Choices from "./Choices";
 import SparkTwo from "../../assets/SparkTwo.svg";
 import Timer from "../Timer";
 import BaseCard from "../BaseCard";
+import { AnimatePresence, motion } from "motion/react";
 
 interface QuestionCardProps {
   currentQuestion: TriviaQuestion;
@@ -20,8 +21,8 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   onTick,
 }) => {
   return (
-    <BaseCard className="relative h-[55vh] w-full xl:w-[54vw] xl:pr-35 bg-white ">
-      <div>
+    <AnimatePresence>
+      <BaseCard className="relative h-[55vh] w-full xl:w-[54vw] xl:pr-35 bg-white ">
         <img
           src={SparkTwo}
           alt=""
@@ -35,10 +36,17 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
             onTick={onTick}
           />
         )}
-      </div>
-
-      <Choices onNext={onNext} triviaQuestion={currentQuestion} />
-    </BaseCard>
+        <motion.div
+          key={currentQuestion.id}
+          initial={{ scaleX: 0 }}
+          animate={{ scaleX: 1 }}
+          style={{ originX: 0 }}
+          transition={{ duration: 0.5, ease: "easeOut", delay: 0.3 }}
+        >
+          <Choices onNext={onNext} triviaQuestion={currentQuestion} />
+        </motion.div>
+      </BaseCard>
+    </AnimatePresence>
   );
 };
 

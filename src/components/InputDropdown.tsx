@@ -46,11 +46,23 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
         } cursor-pointer rounded-xs hover:bg-gray-100 relative`}
       >
         <p>{value || placeholder || "Select an option"}</p>
+        <button
+          type="button"
+          className="absolute right-2 top-1/2 transform -translate-y-1/2 cursor-pointer"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsOpen((prev) => !prev);
+          }}
+        >
+          <CaretDownIcon
+            size={18}
+            className="transition-colors duration-200 hover:text-accent-two"
+          />
+        </button>
       </PrimaryButton>
 
-      {/* Dropdown Menu */}
       <div
-        className={`absolute left-0 right-0 mt-1 bg-white border border-black rounded-xs shadow-lg overflow-y-auto max-h-40 transition-transform duration-200 origin-top transform scale-y-0 opacity-0 ${
+        className={`absolute left-0 right-0 mt-1 bg-white border-2 border-black rounded-xs shadow-lg overflow-y-auto max-h-40 transition-transform duration-200 origin-top transform scale-y-0 opacity-0 ${
           isOpen ? "scale-y-100 opacity-100" : ""
         } flex flex-col z-50
         xl:${
@@ -65,7 +77,7 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
             <button
               key={index}
               onClick={handleClick}
-              className="px-3 py-2 font-medium text-left text-black cursor-pointer font-nunito hover:bg-gray-100 "
+              className="px-3 py-2 font-medium text-left text-black cursor-pointer font-nunito hover:bg-gray-100 hover:font-bold "
             >
               {val}
             </button>
@@ -74,21 +86,6 @@ const InputDropdown: React.FC<InputDropdownProps> = ({
           <p className="px-3 py-2 text-gray-400">No options available</p>
         )}
       </div>
-
-      {/* Caret Icon */}
-      <button
-        type="button"
-        className="absolute right-2 top-1/2 cursor-pointer"
-        onClick={(e) => {
-          e.stopPropagation();
-          setIsOpen((prev) => !prev);
-        }}
-      >
-        <CaretDownIcon
-          size={18}
-          className="transition-colors duration-200 hover:text-accent-two"
-        />
-      </button>
     </div>
   );
 };
