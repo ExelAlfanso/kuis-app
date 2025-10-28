@@ -5,6 +5,5 @@ export type Response = {
   question: string;
   correct_answer: string;
   incorrect_answers: string[];
-  hashed_answer: string;
   answers: string[];
 };

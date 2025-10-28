@@ -17,7 +17,7 @@ export default function QuestionsPage() {
     quizProgress?.correctAnswers || 0
   );
   const restartKey = location.state?.restartKey ?? "default";
-  const [timeLeft] = useState(quizProgress?.timeLeft || 300);
+  const [timeLeft] = useState(quizProgress?.timeLeft || 10);
 
   // ngecegah direct access ke halaman questions tanpa quizProgress
   useEffect(() => {
@@ -102,7 +102,10 @@ export default function QuestionsPage() {
       className="flex flex-col items-center xl:items-start pt-50 px-15"
     >
       <div className="z-20">
-        <div className="text-2xl xl:text-5xl font-bold font-nunito text-accent-two">
+        <div className="text-2xl xl:text-5xl font-bold font-nunito text-secondary text-stroke-1">
+          Question {index + 1} of {questions.length}
+        </div>
+        <div className="text-2xl xl:text-5xl font-bold font-nunito text-accent-two text-stroke-1">
           Category: {currentQuestion.category}
         </div>
         <div className="text-xl xl:text-3xl font-nunito font-bold">

@@ -1,13 +1,12 @@
 import { AnimatePresence, motion } from "motion/react";
 import React from "react";
-import SparkTwo from "../assets/SparkTwo.svg";
-import QuestionsInputDropdown from "../components/quiz/QuestionsInputDropdown";
 import CategoryInputDropdown from "../components/CategoryInputDropdown";
 import InputDropdown from "../components/InputDropdown";
 import { useNavigate } from "react-router-dom";
 import type { QuizProgressState } from "../hooks/useQuizProgress";
 import PrimaryButton from "../components/buttons/PrimaryButton";
 import BaseCard from "../components/BaseCard";
+import QuestionsInputDropdown from "../components/quiz/QuestionsInputDropdown";
 interface QuizFormProps {
   //   onSubmit: () => void;
   quizProgress: QuizProgressState | null;
@@ -38,11 +37,6 @@ export const QuizForm: React.FC<QuizFormProps> = ({
         <div className="relative gap-5 w-100 xl:w-auto">
           {quizProgress == null ? (
             <BaseCard className="w-100 xl:w-auto flex flex-col items-center h-[50vh]">
-              {/* <img
-                src={SparkTwo}
-                alt=""
-                className="absolute -right-10 -top-10 w-25 xl:w-50 xl:-right-20 xl:-top-20"
-              /> */}
               <h1 className="text-3xl font-semibold text-heading">
                 Hello {localStorage.getItem("username")}!
               </h1>
@@ -91,11 +85,6 @@ export const QuizForm: React.FC<QuizFormProps> = ({
             </BaseCard>
           ) : (
             <BaseCard className="font-semibold w-100 xl:w-auto h-[50vh] flex flex-col items-center justify-center bg-red-500">
-              {/* <img
-                src={SparkTwo}
-                alt=""
-                className="absolute -right-10 -top-10 w-25 xl:w-50 xl:-right-20 xl:-top-20"
-              /> */}
               <h1 className="mb-3 text-2xl text-black xl:text-5xl">
                 You have quiz ongoing!
               </h1>

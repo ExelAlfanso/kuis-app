@@ -1,6 +1,5 @@
 import type { TriviaQuestion } from "../../models/TriviaQuestion";
 import Choices from "./Choices";
-import SparkTwo from "../../assets/SparkTwo.svg";
 import Timer from "../Timer";
 import BaseCard from "../BaseCard";
 import { AnimatePresence, motion } from "motion/react";
@@ -23,11 +22,6 @@ const QuestionCard: React.FC<QuestionCardProps> = ({
   return (
     <AnimatePresence>
       <BaseCard className="relative h-[55vh] w-full xl:w-[54vw] xl:pr-35 bg-white ">
-        {/* <img
-          src={SparkTwo}
-          alt=""
-          className="absolute w-25 -right-10 -top-10 xl:w-50 xl:-right-20 xl:-top-20"
-        /> */}
         {time && (
           <Timer
             className="absolute -right-15 top-0"
