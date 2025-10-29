@@ -37,7 +37,7 @@ export const QuizForm: React.FC<QuizFormProps> = ({
         <div className="relative gap-5 w-100 xl:w-auto">
           {quizProgress == null ? (
             <BaseCard className="w-100 xl:w-auto flex flex-col items-center h-[50vh]">
-              <h1 className="text-3xl font-semibold text-heading">
+              <h1 className="text-3xl fontsemibold text-heading">
                 Hello {localStorage.getItem("username")}!
               </h1>
               <h2 className="text-2xl font-semibold text-heading">

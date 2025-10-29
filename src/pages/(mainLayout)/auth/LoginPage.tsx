@@ -4,15 +4,13 @@ import { useAuth } from "../../../hooks/useAuth";
 import LoginForm from "../../../forms/LoginForm";
 
 export default function LoginPage() {
-  const { username, login } = useAuth();
+  const { login } = useAuth();
   const [inputUsername, setUsername] = useState("");
 
   const navigate = useNavigate();
 
   const handleSubmit = () => {
-    if (!username) {
-      login(inputUsername);
-    }
+    login(inputUsername);
     navigate("/quiz");
   };
   return (
