@@ -2,6 +2,29 @@
 
 This project is a quiz application developed as part of an intern application for DOT Indonesia.
 
+## Screenshots
+
+Here's a look at the application in action:
+
+<table>
+  <tr>
+    <td align="center">
+      <img src="screenshots/app-screenshot-1.png" alt="App Screenshot 1" width="400">
+    </td>
+    <td align="center">
+      <img src="screenshots/app-screenshot-2.png" alt="App Screenshot 2" width="400">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <img src="screenshots/app-screenshot-3.png" alt="App Screenshot 3" width="400">
+    </td>
+    <td align="center">
+      <img src="screenshots/app-screenshot-4.png" alt="App Screenshot 4" width="400">
+    </td>
+  </tr>
+</table>
+
 ## Technology Stack
 
 The project is built using the following technologies:
